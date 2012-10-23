@@ -16,10 +16,10 @@ class LoanRecord(object):
         today = datetime.date.today()
         return (self.due_date - today).days
 
-    def is_loan_coming_due(self):
+    def is_coming_due(self):
         return self.days_until_due() <= 3
 
-    def is_loan_overdue(self):
+    def is_overdue(self):
         return self.days_until_due() < 0
 
     def renewals_left(self):
@@ -29,10 +29,18 @@ class LoanRecord(object):
         return self.renewals_left() > 0
 
 
+class ParseError(Exception):
+    pass
+
+
 class TplParser(object):
     def parse_string(self, html_string):
         soup = BeautifulSoup(html_string)
         renewal_table = soup.find(id="renewcharge")
+
+        if not renewal_table:
+            raise ParseError("Could not find loans table.")
+
         hold_records = renewal_table.find_all('tr')
 
         return [self._parse_record(r) for r in hold_records]

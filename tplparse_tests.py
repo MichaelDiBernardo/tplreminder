@@ -1,7 +1,7 @@
 import datetime
 import unittest
 
-from tplparse import TplParser, LoanRecord
+from tplparse import TplParser, LoanRecord, ParseError
 
 
 class TplParseTest(unittest.TestCase):
@@ -29,6 +29,14 @@ class TplParseTest(unittest.TestCase):
             self.assertEquals(0, last.times_renewed)
             self.assertEquals(datetime.date(2012, 11, 12), last.due_date)
 
+    def testFailedLogin(self):
+        with open("failed-login.html") as source_file:
+            try:
+                TplParser().parse_string(source_file.read())
+                self.fail()
+            except ParseError:
+                pass
+
     def testLoanIsFine(self):
         record = LoanRecord(
             title="Blah",
@@ -37,8 +45,8 @@ class TplParseTest(unittest.TestCase):
             due_date=datetime.date.today() + datetime.timedelta(days=4)
         )
 
-        self.assertFalse(record.is_loan_coming_due())
-        self.assertFalse(record.is_loan_overdue())
+        self.assertFalse(record.is_coming_due())
+        self.assertFalse(record.is_overdue())
 
     def testLoanIsComingDue(self):
         record = LoanRecord(
@@ -48,8 +56,8 @@ class TplParseTest(unittest.TestCase):
             due_date=datetime.date.today() + datetime.timedelta(days=3)
         )
 
-        self.assertTrue(record.is_loan_coming_due())
-        self.assertFalse(record.is_loan_overdue())
+        self.assertTrue(record.is_coming_due())
+        self.assertFalse(record.is_overdue())
 
     def testLoanIsOverdue(self):
         record = LoanRecord(
@@ -59,8 +67,8 @@ class TplParseTest(unittest.TestCase):
             due_date=datetime.date.today() - datetime.timedelta(days=1)
         )
 
-        self.assertTrue(record.is_loan_coming_due())
-        self.assertTrue(record.is_loan_overdue())
+        self.assertTrue(record.is_coming_due())
+        self.assertTrue(record.is_overdue())
 
     def testCanStillBeRenewed(self):
         record = LoanRecord(
