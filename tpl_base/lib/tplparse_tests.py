@@ -1,12 +1,18 @@
 import datetime
+import os
 import unittest
 
 from tplparse import TplParser, LoanRecord, ParseError
 
+THIS_DIR = os.path.dirname(os.path.realpath(__file__))
+
+TEST_SOURCE_FILE = os.path.join(THIS_DIR, "source.html")
+TEST_FAILED_LOGIN_FILE = os.path.join(THIS_DIR, "failed-login.html")
+
 
 class TplParseTest(unittest.TestCase):
     def testFromFile(self):
-        with open("source.html") as source_file:
+        with open(TEST_SOURCE_FILE) as source_file:
             records = TplParser().parse_string(source_file.read())
 
             self.assertEquals(5, len(records))
@@ -30,7 +36,7 @@ class TplParseTest(unittest.TestCase):
             self.assertEquals(datetime.date(2012, 11, 12), last.due_date)
 
     def testFailedLogin(self):
-        with open("failed-login.html") as source_file:
+        with open(TEST_FAILED_LOGIN_FILE) as source_file:
             try:
                 TplParser().parse_string(source_file.read())
                 self.fail()
