@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title>Library thing</title>
+</head>
+<body>
+    <form method="POST" action=".">
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Save" />
+    </form>
+</body>
+</html>

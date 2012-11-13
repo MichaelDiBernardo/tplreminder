@@ -1,0 +1,10 @@
+Hi there,
+
+You have some books coming due:
+
+{% for loan in loans %}
+    {% if loan.is_coming_due %}
+	{{ loan.title }} -- {{ loan.due_date }} -- {{ loan.renewals_left }} -- {{ loan.link }}
+    {% endif %}
+{% endfor %}
+

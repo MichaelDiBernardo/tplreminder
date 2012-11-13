@@ -9,3 +9,4 @@ pyflakes==0.5.0
 autopep8==0.8.1
 Django==1.4.2
 South==0.7.5
+pytz

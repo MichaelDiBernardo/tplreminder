@@ -79,6 +79,10 @@ INSTALLED_APPS = (
     'core',
 )
 
+TEMPLATE_DIRS = (
+    os.path.join(root, "../core/templates/")
+)
+
 settings_override = os.path.join(root, "settings_local.py")
 if os.path.isfile(settings_override):
     from settings_local import *

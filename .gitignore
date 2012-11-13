@@ -1,6 +1,7 @@
 *.pyc
 *~
 *.swp
+*.swo
 settings_local.py
 .DS_Store
 tpl_app.db
