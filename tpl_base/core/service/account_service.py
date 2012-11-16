@@ -5,6 +5,11 @@ from core import utils
 
 
 class AccountService(object):
+    def get(self, card_number):
+        try:
+            return LibraryAccount.objects.filter(card_number=card_number).get()
+        except LibraryAccount.DoesNotExist:
+            return None
 
     def register_new(self, account):
         # This will save it also.
@@ -20,3 +25,7 @@ class AccountService(object):
         accounts = LibraryAccount.objects.filter(last_check__lt=yesterday)
 
         return accounts
+    
+    def unsubscribe(self, account):
+        # Well, that was easy.
+        account.delete()
