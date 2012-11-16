@@ -5,6 +5,7 @@ from core import utils
 
 
 class AccountService(object):
+
     def register_new(self, account):
         # This will save it also.
         account.mark_as_checked()

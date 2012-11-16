@@ -9,7 +9,24 @@ class TPLService(object):
         try:
             result = self._fetcher.fetch_for_user(account.card_number, account.pin)
             records = self._parser.parse_string(result)
+            return records
         except ParseError:
-            # This is only thrown on no-loans. TODO: Fix this.
-            records = []
-        return records
+            print "No records for %s" % account.card_number
+        except LoginError:
+            # For now, just log it.
+            print "Couldn't log in %s" % account.card_number
+        except Exception, e:
+            # log e
+            print e
+
+        return []
+
+    def test_login(self, account):
+        try:
+            self._fetcher.fetch_for_user(account.card_number, account.pin)
+        except LoginError:
+            return False
+        except Exception:
+            pass
+
+        return True

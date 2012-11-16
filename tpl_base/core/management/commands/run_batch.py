@@ -14,12 +14,8 @@ class Command(NoArgsCommand):
 
         accounts = account_service.get_outstanding_accounts()
         for account in accounts:
-            try:
-                records = tpl_service.fetch_records_for_account(account)
-                if not records:
-                    mail_service.send_reminder_email(account, records)
-            except Exception, e:
-                # log e
-                print e
+            records = tpl_service.fetch_records_for_account(account)
+            if records:
+                mail_service.send_reminder_email(account, records)
 
             account.mark_as_checked()

@@ -3,6 +3,11 @@
     <title>Library thing</title>
 </head>
 <body>
+    {% if bad_login %}
+        <p>I'm afraid we couldn't log you in. Are you sure you gave us the
+        right barcode # and PIN? (Your PIN is usually the last 4 numbers of
+        your phone number.)</p>
+    {% endif %}
     <form method="POST" action=".">
         {% csrf_token %}
         <table>

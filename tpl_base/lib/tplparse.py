@@ -32,6 +32,8 @@ class LoanRecord(object):
 class ParseError(Exception):
     pass
 
+class LoginError(Exception):
+    pass
 
 class TplParser(object):
     def parse_string(self, html_string):
@@ -90,4 +92,10 @@ class TplFetcher(object):
             }
 
             response = browser.post(self.SIGNIN_URL, data=data)
+
+            text = response.text
+
+            if "Incorrect library card number or PIN" in text:
+                raise LoginError()
+
             return response.text
