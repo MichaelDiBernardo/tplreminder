@@ -32,8 +32,10 @@ class LoanRecord(object):
 class ParseError(Exception):
     pass
 
+
 class LoginError(Exception):
     pass
+
 
 class TplParser(object):
     def parse_string(self, html_string):

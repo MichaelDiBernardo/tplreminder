@@ -1,10 +1,27 @@
 Hi there,
 
-You have some books coming due:
+This is your library loan reminder from tplreminder.ca.
 
-{% for loan in loans %}
-    {% if loan.is_coming_due %}
-	{{ loan.title }} -- {{ loan.due_date }} -- {{ loan.renewals_left }} -- {{ loan.link }}
-    {% endif %}
+{% if overdue %}
+These books are **OVERDUE**:
+==
+{% for loan in overdue %}{{ loan.title }}
+Due on {{ loan.due_date }} 
+Has {{ loan.renewals_left }} renewal(s) left.
+{{ loan.link }}
+==
 {% endfor %}
+{% endif %}
+
+{% if coming_due %}
+These books are due in the next 3 days:
+==
+{% for loan in coming_due %}{{ loan.title }}
+Due on {{ loan.due_date }} 
+Has {{ loan.renewals_left }} renewal(s) left.
+{{ loan.link }}
+==
+{% endfor %}
+{% endif %}
+
 

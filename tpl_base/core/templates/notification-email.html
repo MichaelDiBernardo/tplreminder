@@ -1,0 +1,39 @@
+<h2>This is your library loan reminder from tplreminder.ca.</h2>
+{% if overdue %}
+    <h3>These books are <span style="color: red">OVERDUE</span><h3>
+    <table>
+	<tr>
+	    <th>Book</th>
+	    <th>Due Date</th>
+	    <th>Renewals Left</th>
+	    <th>Link</th>
+	</tr>
+    {% for loan in overdue %}
+	<tr>
+	    <td>{{ loan.title }}</td>
+	    <td>{{ loan.due_date }}</td>
+	    <td>{{ loan.renewals_left }}</td>
+	    <td><a href="{{ loan.link }}">Click</a></td>
+	</tr>
+    {% endfor %}
+    </table>
+{% endif %}
+{% if coming_due %}
+    <h3>These books are due in the next 3 days<h3>
+    <table>
+	<tr>
+	    <th>Book</th>
+	    <th>Due Date</th>
+	    <th>Renewals Left</th>
+	    <th>Link</th>
+	</tr>
+    {% for loan in coming_due %}
+	<tr>
+	    <td>{{ loan.title }}</td>
+	    <td>{{ loan.due_date }}</td>
+	    <td>{{ loan.renewals_left }}</td>
+	    <td><a href="{{ loan.link }}">Click</a></td>
+	</tr>
+    {% endfor %}
+    </table>
+{% endif %}
