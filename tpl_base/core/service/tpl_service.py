@@ -1,3 +1,6 @@
+import logging
+logger = logging.getLogger(__name__)
+
 from lib.tplparse import *
 
 class TPLService(object):
@@ -11,13 +14,13 @@ class TPLService(object):
             records = self._parser.parse_string(result)
             return records
         except ParseError:
-            print "No records for %s" % account.card_number
+            logger.info("Parse failed / no records for %s" %
+                    account.card_number)
         except LoginError:
-            # For now, just log it.
-            print "Couldn't log in %s" % account.card_number
+            logger.warning("Login failed while fetching records for %s" %
+                    account.card_number)
         except Exception, e:
-            # log e
-            print e
+            logger.error("Fetch exception: %s" % e)
 
         return []
 
@@ -26,7 +29,7 @@ class TPLService(object):
             self._fetcher.fetch_for_user(account.card_number, account.pin)
         except LoginError:
             return False
-        except Exception:
-            pass
+        except Exception, e:
+            logger.error("Login test exception: %s" % e)
 
         return True

@@ -5,4 +5,4 @@
 settings_local.py
 .DS_Store
 tpl_app.db
-settings_local.py
+*.log

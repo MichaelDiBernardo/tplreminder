@@ -1,4 +1,6 @@
 import datetime
+import logging
+logger = logging.getLogger(__name__)
 
 from django.conf import settings
 from django.http import Http404
@@ -15,10 +17,13 @@ def index(request):
         if form.is_valid():
             new_account = form.save(commit=False)
 
-            if not settings.CONTEXT.TPLService.test_login(new_account):
+            if settings.CONTEXT.TPLService.test_login(new_account):
                 settings.CONTEXT.AccountService.register_new(new_account)
+                logger.info('Registered new account %s' % new_account.card_number)
                 return redirect(thanks)
             else:
+                logger.info('Login failure @reg %s %s' %
+                        (new_account.card_number, new_account.email))
                 bad_login = True
 
     else:
@@ -41,6 +46,7 @@ def unsubscribe(request, card_number):
 
     if request.method == "POST":
         settings.CONTEXT.AccountService.unsubscribe(account)
+        logger.info('Unsubscribed: %s' % account.card_number)
         return redirect(unsubscribe_done)
     else:
         return render_to_response("unsubscribe.html", {
