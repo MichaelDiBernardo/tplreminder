@@ -7,7 +7,6 @@ from django.template import RequestContext
 
 from core.forms import LibraryAccountForm
 
-# TODO: Overwrite account when you submit it more than once.
 def index(request):
     bad_login = False
 

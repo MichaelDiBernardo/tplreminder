@@ -12,7 +12,12 @@ class AccountService(object):
             return None
 
     def register_new(self, account):
-        # This will save it also.
+        # See if they've registered before. If so, overwrite.
+        old_account = self.get(account.card_number)
+        if old_account:
+            old_account.delete()
+
+        # Marking as checked also saves.
         account.mark_as_checked()
         return account
 
