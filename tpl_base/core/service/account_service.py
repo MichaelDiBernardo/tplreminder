@@ -27,9 +27,12 @@ class AccountService(object):
         In this case, that means any account we haven't checked in 24h.
         """
         yesterday = utils.sane_now() - datetime.timedelta(days=1)
-        accounts = LibraryAccount.objects.filter(last_check__lt=yesterday)
+        mgr = LibraryAccount.objects
 
-        return accounts
+        old_accts_to_check = mgr.filter(last_check__lte=yesterday)
+        new_accts_to_check = mgr.filter(creation_time__gte=yesterday)
+
+        return old_accts_to_check | new_accts_to_check
     
     def unsubscribe(self, account):
         # Well, that was easy.

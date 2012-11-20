@@ -75,6 +75,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'django_nose',
     'south',
     'core',
 )
@@ -82,6 +83,8 @@ INSTALLED_APPS = (
 TEMPLATE_DIRS = (
     os.path.join(root, "../core/templates/")
 )
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 settings_override = os.path.join(root, "settings_local.py")
 if os.path.isfile(settings_override):
