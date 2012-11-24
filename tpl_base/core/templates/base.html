@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>Toronto Public Library Overdue Book Reminder</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+    <h1>{% block heading %}Toronto Public Library Book Reminder{% endblock %}</h1>
+    <div id="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</head>

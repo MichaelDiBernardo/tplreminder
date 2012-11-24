@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block heading %}
+Questions
+{% endblock %}
+{% block content %}
+<h2>Is this safe?</h2>
+<p>
+In short: use at your own risk.
+</p> 
+<p>
+When you log in with your card number and PIN, we save your information in our
+database. We encrypt your PIN before saving it. All communications between you
+and us and between us and the TPL are done over HTTPS. We've taken the
+most basic of precautions to keep your data safe.
+</p>
+<p>
+The way that we figure out if your books are due is by "pretending" that we're
+you. That is, our servers log into your account for you, take a peek at your
+loans chart, and if they see anything that's coming due, they email you. That's
+why we have to save your PIN.
+</p>
+<p>
+If someone does hijack your info, we think they worst they can do is reserve a
+bunch of books without you knowing it. The TPL charges $1 for every book that
+you reserve but fail to pick up.
+</p>
+<p>
+Just to make it clear: We take no responsibility for any theft or loss of
+library card information as a result of using this site.
+</p>
+{% endblock %}

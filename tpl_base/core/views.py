@@ -20,7 +20,7 @@ def index(request):
             if settings.CONTEXT.TPLService.test_login(new_account):
                 settings.CONTEXT.AccountService.register_new(new_account)
                 logger.info('Registered new account %s' % new_account.card_number)
-                return redirect(thanks)
+                return redirect(page, page="thanks")
             else:
                 logger.info('Login failure @reg %s %s' %
                         (new_account.card_number, new_account.email))
@@ -36,8 +36,14 @@ def index(request):
         context_instance=RequestContext(request)
     )
 
-def thanks(request):
-    return render_to_response("thanks.html")
+def page(request, page):
+    try:
+        return render_to_response(
+                "{0}.html".format(page),
+                context_instance=RequestContext(request)
+        )
+    except: 
+        raise Http404
 
 def unsubscribe(request, card_number):
     account = settings.CONTEXT.AccountService.get(card_number)
@@ -47,13 +53,10 @@ def unsubscribe(request, card_number):
     if request.method == "POST":
         settings.CONTEXT.AccountService.unsubscribe(account)
         logger.info('Unsubscribed: %s' % account.card_number)
-        return redirect(unsubscribe_done)
+        return redirect(page, page="unsubscribe-done")
     else:
         return render_to_response("unsubscribe.html", {
                 'account' : account,
             },
             context_instance=RequestContext(request)
         )
-
-def unsubscribe_done(request):
-    return render_to_response("unsubscribe_done.html")

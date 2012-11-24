@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block heading %}
+Questions
+{% endblock %}
+{% block content %}
+<h2>What?</h2>
+<p>
+The <a href="http://www.torontopubliclibrary.ca/">Toronto Public Library</a> allows you to
+renew books online, which is great. However, they only email you after your
+books are <em>overdue</em>.</p> 
+
+<p>They are apparently <a href="http://torontopubliclibrary.typepad.com/webteam/2012/02/improvements-to-holds-and-overdue-notification.html">working on it</a>, but you can use this to send you reminders until then. It will check your account once a day, and if your books are coming due in the next 3 days, it will email you a warning.
+</p>
+
+<h2>Why?</h2>
+
+<p>It bothers me that TPL can't already do this.</p>
+</p>
+
+<p>
+Note that I'm not blaming them for anything. I have no idea what
+proprietary system they may be locked into using, but I've worked with
+enough of those to know how painful the simplest changes can be.
+</p>
+
+<p>
+Then again, maybe it was just a money grab. Even then, I don't blame them. I'd
+rather the money come from voluntary contributions, though. So, if you find
+this service useful, <a href="http://tplfoundation.ca/become_a_donor">consider
+    donating to the TPL</a>. 
+</p>
+
+<h2>How?</h2>
+<p>
+For those of you who are technically inclined, <code>tplreminder</code> is a Python/Django
+app, although the core fetching and parsing stuff is just pure Python. 
+</p>
+
+<p>
+If you want to run this locally instead of using the public service (which
+keeps your library card numbers and PINs in your own datasphere), you can find
+the project <a href="https://github.com/MichaelDiBernardo/tplreminder">on Github</a>.
+</p>
+{% endblock %}

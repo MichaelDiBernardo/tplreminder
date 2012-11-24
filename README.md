@@ -35,7 +35,7 @@ Why did you do this?
 --------------------
 Two reasons:
 
-* I thought people mightfind it useful.
+* I thought people might find it useful.
 * It bothers me that TPL can't already do this.
 
 Not that I blame them. It at first seemed ridiculous to me that a public service

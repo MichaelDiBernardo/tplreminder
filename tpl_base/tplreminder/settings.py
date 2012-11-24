@@ -84,6 +84,17 @@ TEMPLATE_DIRS = (
     os.path.join(root, "../core/templates/")
 )
 
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = '/static/'
+
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 settings_override = os.path.join(root, "settings_local.py")

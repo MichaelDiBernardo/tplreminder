@@ -1,6 +1,6 @@
 Hi there,
 
-This is your library loan reminder from tplreminder.ca.
+This is your library loan reminder from tplreminder.
 
 {% if overdue %}
 These books are **OVERDUE**:
