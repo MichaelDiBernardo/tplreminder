@@ -18,6 +18,7 @@ class AccountService(object):
             old_account.delete()
 
         # Marking as checked also saves.
+        account.encrypt_pin()
         account.mark_as_checked()
         return account
 
