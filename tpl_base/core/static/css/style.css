@@ -12,9 +12,9 @@ h6 strong {color: #56A49F; font-weight:bold;}
 p{line-height: 1.45em !important; margin:0 0 10px 0; text-indent: 0px; font: 1.2em Georgia, bodyfont, serif; color: #333;}
 label {line-height: 1.45em !important; margin:0 0 10px 0; text-indent: 0px; font: 1.2em Georgia, bodyfont, serif; color: #333;}
 
-a:link {color: #333; text-decoration: none; border-width: 0 0 0 0; border-style: none;}
-a:visited {color: #333; text-decoration: none; border:0; border-width: 0 0 0 0; border-style: none;}
-a:hover {color: #999; text-decoration: none; border:0; border-width: 0 0 0 0; border-style: none;}
+a:link {color: #333; text-decoration: underline; border-width: 0 0 0 0; border-style: none;}
+a:visited {color: #333; text-decoration: underline; border:0; border-width: 0 0 0 0; border-style: none;}
+a:hover {color: #999; text-decoration: underline; border:0; border-width: 0 0 0 0; border-style: none;}
 
 #container {
     margin-left: 20px;
